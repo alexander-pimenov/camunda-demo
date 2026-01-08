@@ -1,0 +1,37 @@
+spring:
+  application:
+    name: camunda-demo
+
+camunda:
+  bpm:
+    generic-properties:
+      properties:
+        history-cleanup-strategy: removalTimeBased
+      # установка времени historyTimeToLive в днях для жизни процессов и DMN.
+        history-time-to-live: 30
+    admin-user:
+      id: demo
+      password: demo
+      first-name: Demo
+      last-name: Demo
+      email: demo@camunda.com
+    filter:
+      create: All tasks
+
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: mappings, health, info
+#        include: '*'
+  endpoint:
+    health:
+      show-details: always
+
+logging.level.org.camunda.bpm: debug
+
+# это для информации, для вывода в лог всех зарегистрированных бинов
+check:
+  beans:
+    enables: true

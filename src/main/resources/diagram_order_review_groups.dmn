@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="https://www.omg.org/spec/DMN/20191111/MODEL/" xmlns:dmndi="https://www.omg.org/spec/DMN/20191111/DMNDI/" xmlns:dc="http://www.omg.org/spec/DMN/20180521/DC/" xmlns:modeler="http://camunda.org/schema/modeler/1.0" xmlns:camunda="http://camunda.org/schema/1.0/dmn" id="Definitions_0lmr70r" name="DRD" namespace="http://camunda.org/schema/1.0/dmn" exporter="Camunda Modeler" exporterVersion="5.42.0" modeler:executionPlatform="Camunda Platform"
+ modeler:executionPlatformVersion="7.24.0">
+  <decision id="Decision_1ds316f" name="Order Review Groups">
+    <decisionTable id="DecisionTable_113ibca" hitPolicy="COLLECT">
+      <input id="Input_1" label="Order category" camunda:inputVariable="orderCategory">
+        <inputExpression id="InputExpression_1" typeRef="string">
+          <text></text>
+        </inputExpression>
+      </input>
+      <input id="InputClause_0rh2orh" label="Order value" camunda:inputVariable="orderValue">
+        <inputExpression id="LiteralExpression_0tle710" typeRef="double">
+          <text></text>
+        </inputExpression>
+      </input>
+      <output id="Output_1" label="Review Group" name="reviewGroup" typeRef="string" />
+      <rule id="DecisionRule_1d1jfvz">
+        <description>Sales of small new cars are our every day business and should be reviewed by sales.</description>
+        <inputEntry id="UnaryTests_0fb9k7q">
+          <text>"New car"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0d2bp7g">
+          <text>&lt; 25000</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1y6jdii">
+          <text>"Sales"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_1pxtt48">
+        <description>For spare parts, we need to be more cautious, because of fraud detection reasons.</description>
+        <inputEntry id="UnaryTests_01k0rat">
+          <text>"Spare parts"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_067drn9">
+          <text>&lt; 5000</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_03nl9xk">
+          <text>"Sales"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_10gsrxi">
+        <description>When it comes to pre-owned cars, sales has free hand to decide independent of order value.</description>
+        <inputEntry id="UnaryTests_0wdvdl4">
+          <text>"Pre-owned car"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0g9d425">
+          <text></text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0fd3v9n">
+          <text>"Sales"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_1uqnojh">
+        <description>All cases may be decided by management, too. But they should not even see the very small ones.</description>
+        <inputEntry id="UnaryTests_18x96c4">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0z6itym">
+          <text>&gt;= 5000</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1jsiwxu">
+          <text>"Management"</text>
+        </outputEntry>
+      </rule>
+    </decisionTable>
+  </decision>
+  <dmndi:DMNDI>
+    <dmndi:DMNDiagram>
+      <dmndi:DMNShape id="Decision_1ds316f_di" dmnElementRef="Decision_1ds316f">
+        <dc:Bounds height="80" width="180" x="160" y="100" />
+      </dmndi:DMNShape>
+    </dmndi:DMNDiagram>
+  </dmndi:DMNDI>
+</definitions>
